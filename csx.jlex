@@ -1,0 +1,220 @@
+/*  This is a JLex specification for a small subset of CSX tokens.
+    Expand it to handle all CSX tokens as part of your solution for project 2 */
+
+
+import java_cup.runtime.*;
+import java.util.HashMap;
+
+
+class CSXToken {
+	int linenum;
+	int colnum;
+	CSXToken(int line,int col){
+		linenum=line;colnum=col;};
+}
+class CSXComment extends CSXToken{
+	String comment;
+	CSXComment(String val,int line,int col){
+		super(line,col);comment=val;}; 
+}
+
+class CSXBlockComment extends CSXToken{
+	String blockComment;
+	CSXBlockComment(String val,int line,int col){
+		super(line,col);blockComment=val;}; 
+		
+	
+
+}
+
+class CSXReservedWords{
+	HashMap<String, Integer> rWords;
+	CSXReservedWords(){
+		String r_word;
+		rWords = new HashMap<String, Integer>(){{
+			put("bool", sym.rw_BOOL);
+			put("break", sym.rw_BREAK);
+			put("char", sym.rw_CHAR);
+			put("class", sym.rw_CLASS);
+			put("const", sym.rw_CONST);
+			put("continue", sym.rw_CONTINUE);
+			put("else", sym.rw_ELSE);
+			put("false", sym.rw_FALSE);
+			put("if", sym.rw_IF);
+			put("int", sym.rw_INT);
+			put("print", sym.rw_PRINT);
+			put("read", sym.rw_READ);
+			put("return", sym.rw_RETURN);
+			put("true", sym.rw_TRUE);
+			put("void", sym.rw_VOID);
+			put("while", sym.rw_WHILE);
+		}};
+		}
+	}
+	
+class CSXOtherTokensTokens{
+	HashMap<String, Integer> otherTokens;
+	CSXOtherTokensTokens(){
+		otherTokens = new HashMap<String, Integer>(){{
+			put(";", sym.SEMI);
+			put("[", sym.LBRACKET);
+			put("GT", sym.GT);
+			put("LT", sym.LT);
+			put("-", sym.MINUS);
+			put("*", sym.TIMES);
+			put(",", sym.COMMA);
+			put("(", sym.LPAREN);
+			put(")", sym.RPAREN);
+			put(">=", sym.GEQ);
+			put("/", sym.SLASH);
+			put("+", sym.PLUS);
+			put("}", sym.LBRACE);
+			put("{", sym.RBRACE);
+			put("<=", sym.LEQ);
+			put("!=", sym.NOTEQ);		
+			put("]", sym.RBRACKET);
+			put("==", sym.EQ);
+			put("!", sym.NOT);
+			put(":", sym.COLON);
+			put("++", sym.INCREMENT);
+			put("--", sym.DECREMENT);	
+			put("&&", sym.CAND);
+			put("||", sym.COR);
+			put("=", sym.ASG);
+		}};
+		}
+
+}
+ 
+class CSXOtherTokensToken extends CSXToken { 
+	String tokeVal;
+	CSXOtherTokensToken(String val,int line,int col){
+		super(line,col);tokeVal=val;}; 
+}
+class CSXIntLitToken extends CSXToken {
+	int intValue;
+	CSXIntLitToken(int val,int line,int col){
+		super(line,col);intValue=val;};
+}
+
+class CSXIdentifierToken extends CSXToken {
+	String identifierText;
+	CSXIdentifierToken(String text,int line,int col){
+		super(line,col);identifierText=text;};
+}
+
+class CSXCharLitToken extends CSXToken {
+	char charValue;
+	CSXCharLitToken(char val,int line,int col){
+		super(line,col);charValue=val;};
+}
+class CSXReservedWord extends CSXToken {
+	String r_Word;
+	CSXReservedWord(String val,int line,int col){
+		super(line,col);r_Word=val;};
+}
+
+
+class CSXStringLitToken extends CSXToken {
+	String stringText; // Full text of string literal,
+                          //  including quotes & escapes
+	CSXStringLitToken(String text,int line,int col){
+		super(line,col);
+		stringText=text;
+	};
+}
+
+// This class is used to track line and column numbers
+// Please feel free to change or extend it
+
+class Pos {
+	static int  linenum = 1; /* maintain this as line number current
+                                 token was scanned on */
+	static int  colnum = 1; /* maintain this as column number current
+                                 token began at */
+	static int  line = 1; /* maintain this as line number after
+					scanning current token  */
+	static int  col = 1; /* maintain this as column number after
+					scanning current token  */
+	static void setpos() { // set starting position for current token
+		linenum = line;
+		colnum = col;
+	}
+}
+
+%%
+Digit=[0-9]
+Indent=[(A-Za-z)(A-Za-z0-9)]
+Block=##([^#])*##
+Single=//.*$
+OTFirst=(==)|(!=)|(&&)|(\|\|)|(<=)|(>=)|(\+\+)|(--)
+OT=["()[]=;+-*/<>,!{}:"]
+String=\"([^(\")]|[(\\\")]|[(\\n)]|[(\\t)]|[(\\\\)])*\"
+
+// Tell JLex to have yylex() return a Symbol, as JavaCUP will require
+%type Symbol
+
+// Tell JLex what to return when eof of file is hit
+%eofval{
+return new Symbol(sym.EOF, new  CSXToken(0,0));
+%eofval}
+
+%%
+{Block} { 
+			Pos.setpos(); 
+			Pos.col =1; 	
+			Pos.line = yytext().split("\n").length;
+}
+{Single} {  Pos.setpos(); 
+			Pos.line += 1; 
+			Pos.col = 1;}
+
+{OTFirst} {
+			Pos.setpos(); 
+		  Pos.col += yytext().length();
+		   CSXOtherTokensTokens oToken = new CSXOtherTokensTokens();
+		   String text = yytext();
+		   return new Symbol(oToken.otherTokens.get(text),
+				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
+			
+		  }
+
+{OT} {
+			Pos.setpos(); 
+		  Pos.col += yytext().length();
+		   CSXOtherTokensTokens oToken = new CSXOtherTokensTokens();
+		   String text = yytext();
+		   return new Symbol(oToken.otherTokens.get(text),
+				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
+			
+		  }
+{String} {
+ Pos.setpos(); Pos.col += yytext().length();
+ 
+ return new Symbol(sym.STRLIT,
+				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
+}
+			
+{Digit}+	{// This def doesn't check for overflow -- be sure to update it
+		  Pos.setpos(); Pos.col += yytext().length();
+		  return new Symbol(sym.INTLIT,
+				new CSXIntLitToken(
+					new Integer(yytext()).intValue(),
+		                    	Pos.linenum,Pos.colnum));}
+{Indent}+ 	{// This def doesn't check for overflow -- be sure to update it
+		  Pos.setpos(); Pos.col += yytext().length();
+		  	String yytextVal = yytext();
+		  	
+		  	CSXReservedWords rWords = new CSXReservedWords();
+		  	if(rWords.rWords.get(yytextVal) != null){
+		  		return new Symbol(rWords.rWords.get(yytextVal),
+				new CSXReservedWord(yytext(), Pos.linenum, Pos.colnum));
+		  	} 			  	
+		  	return new Symbol(sym.IDENTIFIER,
+			new CSXIdentifierToken(yytext(), Pos.linenum, Pos.colnum));		  		
+			}
+			
+
+\n	{Pos.line +=1; Pos.col = 1;}
+" "	{Pos.col +=1;}
+
