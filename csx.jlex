@@ -149,7 +149,8 @@ Block=##([^#])*##
 Single=//.*$
 OTFirst=(==)|(!=)|(&&)|(\|\|)|(<=)|(>=)|(\+\+)|(--)
 OT=["()[]=;+-*/<>,!{}:"]
-String=\"([^(\")]|[(\\\")]|[(\\n)]|[(\\t)]|[(\\\\)])*\"
+String=\"([^(\")]|[(\\n)]|([(\\)][(\")])|[(\\t)]|[(\\\\)])*\"
+
 
 // Tell JLex to have yylex() return a Symbol, as JavaCUP will require
 %type Symbol

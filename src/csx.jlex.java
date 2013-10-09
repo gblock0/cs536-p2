@@ -278,7 +278,6 @@ class Yylex {
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
-		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
@@ -286,6 +285,9 @@ class Yylex {
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
+		YY_NOT_ACCEPT,
+		YY_NO_ANCHOR,
+		YY_NOT_ACCEPT,
 		YY_NOT_ACCEPT,
 		YY_NOT_ACCEPT
 	};
@@ -301,78 +303,83 @@ class Yylex {
 		0, 14, 14, 14, 14, 14, 14, 14,
 		14, 14, 14, 14, 14, 14, 14, 14,
 		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 8, 0, 8, 0, 0,
+		14, 14, 14, 8, 15, 8, 0, 0,
 		0, 14, 14, 14, 14, 14, 14, 14,
 		14, 14, 14, 14, 14, 14, 14, 14,
 		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 8, 15, 8, 0, 0
+		14, 14, 14, 8, 16, 8, 0, 0
 		
 	};
 	private int yy_rmap[] = {
-		0, 1, 1, 2, 3, 4, 1, 5,
-		1, 1, 5, 4, 6, 1, 7, 8,
-		9, 10, 11, 12, 13, 14 
+		0, 1, 1, 2, 3, 4, 1, 1,
+		1, 1, 5, 4, 5, 6, 1, 7,
+		8, 9, 10, 11, 12, 13, 14, 15
+		
 	};
 	private int yy_nxt[][] = {
-		{ -1, 1, 2, 3, 10, 12, 14, 11,
-			13, 15, 17, 19, 4, 3, 5, 16
-			
+		{ -1, 1, 2, 3, 10, 13, 15, 11,
+			14, 16, 18, 20, 4, 3, 5, -1,
+			17 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, -1, -1, -1, -1, -1
-			
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, -1, -1, 6, -1, -1
-			
+			-1, -1, -1, -1, -1, 6, -1, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, 5,
-			-1, -1, -1, -1, 4, -1, 5, -1
-			
+			-1, -1, -1, -1, 4, -1, 5, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, 5,
-			-1, -1, -1, -1, 5, -1, 5, -1
-			
+			-1, -1, -1, -1, 5, -1, 5, -1,
+			-1 
 		},
-		{ 10, 10, 10, 10, 7, 10, 10, 10,
-			10, 10, 10, 10, 10, 10, 10, 10
-			
+		{ 10, 10, 10, 10, 7, 10, 10, 19,
+			10, 10, 10, 10, 10, 10, 10, 19,
+			10 
 		},
-		{ -1, -1, -1, -1, -1, 18, -1, -1,
-			-1, -1, -1, -1, -1, -1, -1, -1
-			
+		{ -1, -1, -1, -1, -1, 21, -1, -1,
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, 6, -1,
-			-1, -1, -1, -1, -1, -1, -1, -1
-			
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, 6, -1, -1, -1, -1, -1, -1
-			
+			-1, 6, -1, -1, -1, -1, -1, -1,
+			-1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, -1, -1, -1, -1, 6
-			
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			6 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, 6, -1, -1, -1, -1, -1
-			
+			-1, -1, 6, -1, -1, -1, -1, -1,
+			-1 
 		},
-		{ 18, 18, 18, 18, 18, 21, 18, 18,
-			18, 18, 18, 18, 18, 18, 18, 18
-			
+		{ 10, 10, 10, 10, 12, 10, 10, 19,
+			10, 10, 10, 10, 10, 10, 10, 19,
+			10 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, 20, -1, -1, -1, -1
-			
+			-1, -1, -1, 22, -1, -1, -1, -1,
+			-1 
 		},
-		{ 20, 8, 20, 20, 20, 20, 20, 20,
-			20, 20, 20, 20, 20, 20, 20, 20
-			
+		{ 21, 21, 21, 21, 21, 23, 21, 21,
+			21, 21, 21, 21, 21, 21, 21, 21,
+			21 
+		},
+		{ 22, 8, 22, 22, 22, 22, 22, 22,
+			22, 22, 22, 22, 22, 22, 22, 22,
+			22 
 		},
 		{ -1, -1, -1, -1, -1, 9, -1, -1,
-			-1, -1, -1, -1, -1, -1, -1, -1
-			
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1 
 		}
 	};
 	public Symbol yylex ()
@@ -510,18 +517,15 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		  }
 					case -11:
 						break;
-					case 13:
+					case 12:
 						{
-			Pos.setpos(); 
-		  Pos.col += yytext().length();
-		   CSXOtherTokensTokens oToken = new CSXOtherTokensTokens();
-		   String text = yytext();
-		   return new Symbol(oToken.otherTokens.get(text),
-				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
-		  }
+ Pos.setpos(); Pos.col += yytext().length();
+ return new Symbol(sym.STRLIT,
+				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
+}
 					case -12:
 						break;
-					case 15:
+					case 14:
 						{
 			Pos.setpos(); 
 		  Pos.col += yytext().length();
@@ -532,7 +536,7 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		  }
 					case -13:
 						break;
-					case 17:
+					case 16:
 						{
 			Pos.setpos(); 
 		  Pos.col += yytext().length();
@@ -543,7 +547,7 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		  }
 					case -14:
 						break;
-					case 19:
+					case 18:
 						{
 			Pos.setpos(); 
 		  Pos.col += yytext().length();
@@ -553,6 +557,17 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
 		  }
 					case -15:
+						break;
+					case 20:
+						{
+			Pos.setpos(); 
+		  Pos.col += yytext().length();
+		   CSXOtherTokensTokens oToken = new CSXOtherTokensTokens();
+		   String text = yytext();
+		   return new Symbol(oToken.otherTokens.get(text),
+				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
+		  }
+					case -16:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

@@ -1,8 +1,8 @@
 ##asasdf
 asdfasdf
 ##
-"He\"llo""He\no:"
-"\\\\tew"
+"Het\"ew""Do\tg"
+"Natu\\re"
 123 == 120
 456 != 321
 +12345 + 17
