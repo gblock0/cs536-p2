@@ -274,11 +274,11 @@ class Yylex {
 		YY_NO_ANCHOR,
 		YY_NO_ANCHOR,
 		YY_NO_ANCHOR,
+		YY_NO_ANCHOR,
 		YY_END,
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
-		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
@@ -287,99 +287,114 @@ class Yylex {
 		YY_NO_ANCHOR,
 		YY_NOT_ACCEPT,
 		YY_NO_ANCHOR,
+		YY_NOT_ACCEPT,
+		YY_NOT_ACCEPT,
+		YY_NOT_ACCEPT,
 		YY_NOT_ACCEPT,
 		YY_NOT_ACCEPT,
 		YY_NOT_ACCEPT
 	};
 	private int yy_cmap[] = {
 		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 1, 0, 0, 0, 0, 0,
+		0, 1, 2, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0,
-		2, 3, 4, 5, 0, 0, 6, 0,
-		7, 7, 8, 9, 8, 10, 0, 11,
-		12, 12, 12, 12, 12, 12, 12, 12,
-		12, 12, 8, 8, 3, 13, 3, 0,
-		0, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 8, 15, 8, 0, 0,
-		0, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 14, 14, 14, 14, 14,
-		14, 14, 14, 8, 16, 8, 0, 0
+		1, 3, 4, 5, 0, 0, 6, 7,
+		8, 8, 9, 10, 9, 11, 0, 12,
+		13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 9, 9, 3, 14, 3, 15,
+		0, 16, 16, 16, 16, 16, 16, 16,
+		16, 16, 16, 16, 16, 16, 16, 16,
+		16, 16, 16, 16, 16, 16, 16, 16,
+		16, 16, 16, 9, 17, 9, 0, 0,
+		0, 16, 16, 16, 16, 16, 16, 16,
+		16, 16, 16, 16, 16, 16, 18, 16,
+		16, 16, 16, 16, 18, 16, 16, 16,
+		16, 16, 16, 9, 19, 9, 15, 0
 		
 	};
 	private int yy_rmap[] = {
-		0, 1, 1, 2, 3, 4, 1, 1,
-		1, 1, 5, 4, 5, 6, 1, 7,
-		8, 9, 10, 11, 12, 13, 14, 15
-		
+		0, 1, 2, 3, 4, 2, 5, 2,
+		6, 2, 2, 5, 4, 7, 2, 8,
+		9, 10, 11, 6, 12, 13, 14, 15,
+		16, 17, 18 
 	};
 	private int yy_nxt[][] = {
-		{ -1, 1, 2, 3, 10, 13, 15, 11,
-			14, 16, 18, 20, 4, 3, 5, -1,
-			17 
+		{ -1, 1, 2, 3, 11, 13, 15, 17,
+			12, 14, 16, 18, 20, 4, 3, 19,
+			4, -1, 4, 21 
+		},
+		{ -1, 1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
 			-1, -1, -1, -1, -1, -1, -1, -1,
-			-1 
+			-1, -1, -1, -1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, -1, -1, 6, -1, -1,
-			-1 
+			-1, -1, -1, -1, -1, -1, 5, -1,
+			-1, -1, -1, -1 
 		},
-		{ -1, -1, -1, -1, -1, -1, -1, 5,
-			-1, -1, -1, -1, 4, -1, 5, -1,
-			-1 
+		{ -1, -1, -1, -1, -1, -1, -1, -1,
+			4, -1, -1, -1, -1, 4, -1, -1,
+			4, -1, 4, -1 
 		},
-		{ -1, -1, -1, -1, -1, -1, -1, 5,
-			-1, -1, -1, -1, 5, -1, 5, -1,
-			-1 
+		{ 11, 11, 11, 11, 6, 11, 11, 11,
+			11, 11, 11, 11, 11, 11, 11, 11,
+			11, 11, 11, 11 
 		},
-		{ 10, 10, 10, 10, 7, 10, 10, 19,
-			10, 10, 10, 10, 10, 10, 10, 19,
-			10 
+		{ -1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1, -1, 8, -1, -1,
+			-1, -1, -1, -1 
 		},
-		{ -1, -1, -1, -1, -1, 21, -1, -1,
+		{ -1, -1, -1, -1, -1, 22, -1, -1,
 			-1, -1, -1, -1, -1, -1, -1, -1,
-			-1 
+			-1, -1, -1, -1 
 		},
-		{ -1, -1, -1, -1, -1, -1, 6, -1,
+		{ -1, -1, -1, -1, -1, -1, 5, -1,
 			-1, -1, -1, -1, -1, -1, -1, -1,
-			-1 
+			-1, -1, -1, -1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, 6, -1, -1, -1, -1, -1, -1,
-			-1 
+			-1, -1, 5, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1 
+		},
+		{ 23, 23, 23, 23, 23, 23, 23, 7,
+			-1, 23, 23, 23, 23, 23, 23, 23,
+			23, 24, 23, 23 
+		},
+		{ -1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, 5, -1, -1, -1, -1,
+			-1, -1, -1, -1 
+		},
+		{ -1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1, 25, -1, -1, -1,
+			-1, -1, -1, -1 
 		},
 		{ -1, -1, -1, -1, -1, -1, -1, -1,
 			-1, -1, -1, -1, -1, -1, -1, -1,
-			6 
+			-1, -1, -1, 5 
 		},
-		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, 6, -1, -1, -1, -1, -1,
-			-1 
-		},
-		{ 10, 10, 10, 10, 12, 10, 10, 19,
-			10, 10, 10, 10, 10, 10, 10, 19,
-			10 
-		},
-		{ -1, -1, -1, -1, -1, -1, -1, -1,
-			-1, -1, -1, 22, -1, -1, -1, -1,
-			-1 
-		},
-		{ 21, 21, 21, 21, 21, 23, 21, 21,
-			21, 21, 21, 21, 21, 21, 21, 21,
-			21 
-		},
-		{ 22, 8, 22, 22, 22, 22, 22, 22,
+		{ 22, 22, 22, 22, 22, 26, 22, 22,
 			22, 22, 22, 22, 22, 22, 22, 22,
-			22 
+			22, 22, 22, 22 
 		},
-		{ -1, -1, -1, -1, -1, 9, -1, -1,
+		{ -1, -1, -1, -1, -1, -1, -1, 7,
 			-1, -1, -1, -1, -1, -1, -1, -1,
-			-1 
+			-1, -1, -1, -1 
+		},
+		{ -1, -1, -1, -1, -1, -1, -1, 7,
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1, 23, 23, -1 
+		},
+		{ 25, 25, 9, 25, 25, 25, 25, 25,
+			25, 25, 25, 25, 25, 25, 25, 25,
+			25, 25, 25, 25 
+		},
+		{ -1, -1, -1, -1, -1, 10, -1, -1,
+			-1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1 
 		}
 	};
 	public Symbol yylex ()
@@ -432,11 +447,11 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 					}
 					switch (yy_last_accept_state) {
 					case 1:
-						{Pos.line +=1; Pos.col = 1;}
+						{Pos.col +=1;}
 					case -2:
 						break;
 					case 2:
-						{Pos.col +=1;}
+						{Pos.line +=1; Pos.col = 1;}
 					case -3:
 						break;
 					case 3:
@@ -453,15 +468,6 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 					case 4:
 						{// This def doesn't check for overflow -- be sure to update it
 		  Pos.setpos(); Pos.col += yytext().length();
-		  return new Symbol(sym.INTLIT,
-				new CSXIntLitToken(
-					new Integer(yytext()).intValue(),
-		                    	Pos.linenum,Pos.colnum));}
-					case -5:
-						break;
-					case 5:
-						{// This def doesn't check for overflow -- be sure to update it
-		  Pos.setpos(); Pos.col += yytext().length();
 		  	String yytextVal = yytext();
 		  	CSXReservedWords rWords = new CSXReservedWords();
 		  	if(rWords.rWords.get(yytextVal) != null){
@@ -471,9 +477,9 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		  	return new Symbol(sym.IDENTIFIER,
 			new CSXIdentifierToken(yytext(), Pos.linenum, Pos.colnum));		  		
 			}
-					case -6:
+					case -5:
 						break;
-					case 6:
+					case 5:
 						{
 			Pos.setpos(); 
 		  Pos.col += yytext().length();
@@ -482,31 +488,66 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		   return new Symbol(oToken.otherTokens.get(text),
 				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
 		  }
+					case -6:
+						break;
+					case 6:
+						{
+ Pos.setpos(); Pos.col += yytext().length();
+ return new Symbol(sym.STRLIT,
+				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
+}
 					case -7:
 						break;
 					case 7:
 						{
  Pos.setpos(); Pos.col += yytext().length();
- return new Symbol(sym.STRLIT,
-				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
+ if(yytext().length() == 3){
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken(yytext().substring(1,2),Pos.linenum,Pos.colnum));
+ }else if(yytext().length() == 4){
+ 	System.out.println("test");
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken(yytext().substring(1,3),Pos.linenum,Pos.colnum));
+ }
+ else if(yytext().length() == 2){
+ 	System.out.println("test");
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken("",Pos.linenum,Pos.colnum));
+ }
+ else{
+  	System.out.println("FUCK" + yytext());
+  	}
 }
 					case -8:
 						break;
 					case 8:
-						{  Pos.setpos(); 
-			Pos.line += 1; 
-			Pos.col = 1;}
+						{// This def doesn't check for overflow -- be sure to update it
+		  Pos.setpos(); Pos.col += yytext().length();
+		  String text = yytext();
+		  if(yytext().charAt(0) == '~'){
+		   	text = text.replace("~","-");
+		  }
+		  return new Symbol(sym.INTLIT,
+				new CSXIntLitToken(
+					new Integer(text).intValue(),
+		                    	Pos.linenum,Pos.colnum));}
 					case -9:
 						break;
 					case 9:
+						{  Pos.setpos(); 
+			Pos.line += 1; 
+			Pos.col = 1;}
+					case -10:
+						break;
+					case 10:
 						{ 
 			Pos.setpos(); 
 			Pos.col =1; 	
 			Pos.line = yytext().split("\n").length;
 }
-					case -10:
+					case -11:
 						break;
-					case 11:
+					case 12:
 						{
 			Pos.setpos(); 
 		  Pos.col += yytext().length();
@@ -515,14 +556,6 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 		   return new Symbol(oToken.otherTokens.get(text),
 				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
 		  }
-					case -11:
-						break;
-					case 12:
-						{
- Pos.setpos(); Pos.col += yytext().length();
- return new Symbol(sym.STRLIT,
-				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
-}
 					case -12:
 						break;
 					case 14:

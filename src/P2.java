@@ -100,19 +100,28 @@ public class P2 {
 		case sym.COLON:
 		case sym.INCREMENT:
 		case sym.DECREMENT:
-			System.out.println("\t Other Token :( "  + ((CSXOtherTokensToken) token.value).tokeVal);
+			System.out.println("\t Other Token: "  + ((CSXOtherTokensToken) token.value).tokeVal);
 			break;
 		  case sym.INTLIT:
+			  	int text = ((CSXIntLitToken) token.value).intValue;
+			  	String temp = "";
+			  	if(text < 0){
+			  		temp = temp + text;
+			  		temp = temp.replace("-", "~");
+			  	}
     			System.out.println("\tinteger literal(" +
-				((CSXIntLitToken) token.value).intValue + ")");
+				temp + ")");
 			break;
 		  case sym.STRLIT:
-			  System.out.println("\tstring literal(" + ((CSXStringLitToken) token.value).stringText + ")");
+			  System.out.println("\tstring literal: " + ((CSXStringLitToken) token.value).stringText + "");
 			  break;
 		  case sym.IDENTIFIER:
 			  System.out.println("\tIdent "  + ((CSXIdentifierToken) token.value).identifierText);
 			  break;
 
+		  case sym.CHARLIT:
+			  System.out.println("\tChar " + ((CSXStringLitToken) token.value).stringText);
+			  break;
 		  default:
 			throw new RuntimeException();
 		}

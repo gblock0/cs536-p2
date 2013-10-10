@@ -143,14 +143,15 @@ class Pos {
 }
 
 %%
-Digit=[0-9]
+Digit=[~?]([0-9]+)
 Indent=[(A-Za-z)(A-Za-z0-9)]
 Block=##([^#])*##
 Single=//.*$
 OTFirst=(==)|(!=)|(&&)|(\|\|)|(<=)|(>=)|(\+\+)|(--)
 OT=["()[]=;+-*/<>,!{}:"]
-String=\"([^(\")]|[(\\n)]|([(\\)][(\")])|[(\\t)]|[(\\\\)])*\"
-
+String=\"([^(\")]|[^(\\)]|[(\\n)]|([(\\)][(\")])|[(\\t)]|[(\\\\)])*\"
+Char='([^(')]|(\\n)|(\\t)|((\\)(\\)))?'
+Whitespace=[\040\t]
 
 // Tell JLex to have yylex() return a Symbol, as JavaCUP will require
 %type Symbol
@@ -189,18 +190,46 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 				new CSXOtherTokensToken(yytext(), Pos.linenum, Pos.colnum));  		
 			
 		  }
+		  
 {String} {
  Pos.setpos(); Pos.col += yytext().length();
  
  return new Symbol(sym.STRLIT,
 				new CSXStringLitToken(yytext(),Pos.linenum,Pos.colnum));
 }
+
+{Char} {
+ Pos.setpos(); Pos.col += yytext().length();
+ 
+ if(yytext().length() == 3){
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken(yytext().substring(1,2),Pos.linenum,Pos.colnum));
+ }else if(yytext().length() == 4){
+ 	System.out.println("test");
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken(yytext().substring(1,3),Pos.linenum,Pos.colnum));
+ }
+ else if(yytext().length() == 2){
+ 	System.out.println("test");
+ 	return new Symbol(sym.CHARLIT,
+				new CSXStringLitToken("",Pos.linenum,Pos.colnum));
+ }
+ else{
+  	System.out.println("FUCK" + yytext());
+  	}
+ 
+ 
+}
 			
 {Digit}+	{// This def doesn't check for overflow -- be sure to update it
 		  Pos.setpos(); Pos.col += yytext().length();
+		  String text = yytext();
+		  if(yytext().charAt(0) == '~'){
+		   	text = text.replace("~","-");
+		  }
 		  return new Symbol(sym.INTLIT,
 				new CSXIntLitToken(
-					new Integer(yytext()).intValue(),
+					new Integer(text).intValue(),
 		                    	Pos.linenum,Pos.colnum));}
 {Indent}+ 	{// This def doesn't check for overflow -- be sure to update it
 		  Pos.setpos(); Pos.col += yytext().length();
@@ -217,5 +246,5 @@ return new Symbol(sym.EOF, new  CSXToken(0,0));
 			
 
 \n	{Pos.line +=1; Pos.col = 1;}
-" "	{Pos.col +=1;}
+{Whitespace}+	{Pos.col +=1;}
 
