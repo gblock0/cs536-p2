@@ -35,7 +35,7 @@ public class P2 {
 
     // lex is a JLex-generated scanner that will read from yyon
     	Yylex lex = new Yylex(yyin);	
-
+    	System.out.println("Coded by Greg Bammel (906-337-7890) and Greg Block (905-814-9023)");
     	System.out.print ("Begin test of CSX scanner.");
     	System.out.println (" Scanning file "+
         		args[0]+ ":");
@@ -49,6 +49,8 @@ public class P2 {
  * Extend the code in the switch to display all the valid CSX tokens.
  * 
  */
+	
+	
 	
 	while ( token.sym != sym.EOF ) {
 
@@ -72,7 +74,7 @@ public class P2 {
 		case sym.rw_TRUE:
 		case sym.rw_VOID:
 		case sym.rw_WHILE:
-		System.out.println("\tRESERVED WORD! "  + ((CSXReservedWord) token.value).r_Word);
+		System.out.println("\tReserved Word ("  + ((CSXReservedWord) token.value).r_Word + ")");
 		break;	
 		case sym.SEMI:
 		case sym.COR:
@@ -100,7 +102,7 @@ public class P2 {
 		case sym.COLON:
 		case sym.INCREMENT:
 		case sym.DECREMENT:
-			System.out.println("\t Other Token: "  + ((CSXOtherTokensToken) token.value).tokeVal);
+			System.out.println("\tOther Token ("  + ((CSXOtherTokensToken) token.value).tokeVal + ")");
 			break;
 		  case sym.INTLIT:
 			  	int text = ((CSXIntLitToken) token.value).intValue;
@@ -108,19 +110,25 @@ public class P2 {
 			  	if(text < 0){
 			  		temp = temp + text;
 			  		temp = temp.replace("-", "~");
+			  	}else
+			  	{
+			  		temp = text + "";
 			  	}
-    			System.out.println("\tinteger literal(" +
+    			System.out.println("\tInteger literal (" +
 				temp + ")");
 			break;
 		  case sym.STRLIT:
-			  System.out.println("\tstring literal: " + ((CSXStringLitToken) token.value).stringText + "");
+			  System.out.println("\tString literal (" + ((CSXStringLitToken) token.value).stringText + ")");
 			  break;
 		  case sym.IDENTIFIER:
-			  System.out.println("\tIdent "  + ((CSXIdentifierToken) token.value).identifierText);
+			  System.out.println("\tIdentifier ("  + ((CSXIdentifierToken) token.value).identifierText + ")");
 			  break;
 
 		  case sym.CHARLIT:
-			  System.out.println("\tChar " + ((CSXStringLitToken) token.value).stringText);
+			  System.out.println("\tChar literal (" + ((CSXStringLitToken) token.value).stringText + ")");
+			  break;
+		  case -1:
+			  System.out.println("\t**ERROR: invalid token (" + ((CSXInvalidToken) token.value).stringText + ")");
 			  break;
 		  default:
 			throw new RuntimeException();
