@@ -74,7 +74,7 @@ public class P2 {
 		case sym.rw_TRUE:
 		case sym.rw_VOID:
 		case sym.rw_WHILE:
-		System.out.println("\tReserved Word ("  + ((CSXReservedWord) token.value).r_Word + ")");
+		System.out.println("\t"  + ((CSXReservedWord) token.value).r_Word);
 		break;	
 		case sym.SEMI:
 		case sym.COR:
@@ -102,7 +102,7 @@ public class P2 {
 		case sym.COLON:
 		case sym.INCREMENT:
 		case sym.DECREMENT:
-			System.out.println("\tOther Token ("  + ((CSXOtherTokensToken) token.value).tokeVal + ")");
+			System.out.println("\t" + ((CSXOtherTokensToken) token.value).tokeVal);
 			break;
 		  case sym.INTLIT:
 			  	int text = ((CSXIntLitToken) token.value).intValue;
